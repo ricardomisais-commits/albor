@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Albor — A calm place between events</title>
+<meta name="description" content="Albor shows your free time, suggests gentle things to do, and never judges you for resting. Built for ADHD and neurodivergent brains. Free on iOS.">
+<meta property="og:title" content="Albor — A calm place between events">
+<meta property="og:description" content="The anti-productivity app for ADHD brains. See your free time. Rest without guilt. Free on iOS.">
+<meta property="og:type" content="website">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --dark: #0D1B2A;
+    --darker: #080F1A;
+    --teal: #1B9AAA;
+    --teal-glow: rgba(27, 154, 170, 0.15);
+    --purple: #7B68EE;
+    --purple-glow: rgba(123, 104, 238, 0.1);
+    --white: #FFFFFF;
+    --gray: #94A3B8;
+    --light-gray: #CBD5E1;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--darker);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    background: radial-gradient(ellipse at 50% 30%, var(--teal-glow) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 70%, var(--purple-glow) 0%, transparent 50%),
+                var(--darker);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(27, 154, 170, 0.3);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--teal);
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--teal), #4ECDC4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--light-gray);
+    font-weight: 300;
+    margin-bottom: 1rem;
+    max-width: 500px;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--gray);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    background: var(--teal);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(27, 154, 170, 0.3);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(27, 154, 170, 0.4);
+  }
+
+  .cta-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cta-free {
+    font-size: 0.85rem;
+    color: var(--gray);
+  }
+
+  /* ── Features ── */
+  .features {
+    padding: 5rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .features h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+
+  .features-subtitle {
+    text-align: center;
+    color: var(--gray);
+    margin-bottom: 3rem;
+    font-size: 1.05rem;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.8rem;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(27, 154, 170, 0.2);
+    transform: translateY(-4px);
+  }
+
+  .feature-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .feature-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--teal);
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ── Philosophy ── */
+  .philosophy {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: radial-gradient(ellipse at 50% 50%, var(--purple-glow) 0%, transparent 60%);
+  }
+
+  .philosophy-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .philosophy h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .philosophy-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .philosophy-list li {
+    font-size: 1.1rem;
+    color: var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .philosophy-list .x {
+    color: var(--purple);
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+
+  .philosophy-quote {
+    font-size: 1.2rem;
+    color: var(--teal);
+    font-style: italic;
+    font-weight: 300;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* ── Story ── */
+  .story {
+    padding: 5rem 2rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .story h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .story p {
+    font-size: 1.05rem;
+    color: var(--light-gray);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+
+  .story .signature {
+    color: var(--teal);
+    font-weight: 500;
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
+
+  /* ── Footer CTA ── */
+  .footer-cta {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(180deg, transparent 0%, rgba(27, 154, 170, 0.05) 100%);
+  }
+
+  .footer-cta h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-cta p {
+    color: var(--gray);
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+  }
+
+  /* ── Footer ── */
+  footer {
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .social-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .social-links a:hover { color: var(--teal); }
+
+  footer .copyright {
+    color: rgba(148, 163, 184, 0.5);
+    font-size: 0.8rem;
+  }
+
+  /* ── Mobile adjustments ── */
+  @media (max-width: 640px) {
+    .hero { padding: 1.5rem; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .philosophy-list li { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <span class="hero-badge">Free on iOS</span>
+  <h1>Albor</h1>
+  <p class="hero-subtitle">A calm place between events.</p>
+  <p class="hero-desc">Albor shows your free time, suggests gentle things to do, and never judges you for resting. Built for ADHD and neurodivergent brains.</p>
+  <div class="cta-group">
+    <a href="https://apps.apple.com/app/albor/id6770060563" class="cta-button">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download on the App Store
+    </a>
+    <span class="cta-free">Free. No ads. No tracking. No accounts.</span>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+  <h2>Designed for your brain.</h2>
+  <p class="features-subtitle">Every feature exists because someone with ADHD needed it.</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <span class="feature-icon">&#9201;</span>
+      <h3>See Your Free Time</h3>
+      <p>Albor reads your calendar, finds the gaps, and puts your actual free time right on your Lock Screen. No mental math required.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">&#10024;</span>
+      <h3>Gentle Missions</h3>
+      <p>Small, kind suggestions: stretch, drink water, read a chapter. You choose what to do, how long, or nothing at all.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">&#128156;</span>
+      <h3>Rest Without Guilt</h3>
+      <p>The "I don't want to do anything" button is always there. Press it and the app says: "It's okay to not do anything right now."</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">&#127761;</span>
+      <h3>Wind-Down Mode</h3>
+      <p>Guided preparation before your next event. Smooth transitions instead of last-minute panic.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">&#128172;</span>
+      <h3>Running Late?</h3>
+      <p>Draft a kind "I'm running late" message in three tones. Because we've all been there.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">&#127757;</span>
+      <h3>Fully Bilingual</h3>
+      <p>English and Spanish, because that's how the founder's brain works. More languages coming.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="philosophy">
+  <div class="philosophy-inner">
+    <h2>What Albor will never do.</h2>
+    <ul class="philosophy-list">
+      <li><span class="x">&#10005;</span> No streaks</li>
+      <li><span class="x">&#10005;</span> No scores</li>
+      <li><span class="x">&#10005;</span> No shame</li>
+      <li><span class="x">&#10005;</span> No tracking your data</li>
+      <li><span class="x">&#10005;</span> No selling your data</li>
+      <li><span class="x">&#10005;</span> No "You haven't opened me today!" notifications</li>
+    </ul>
+    <p class="philosophy-quote">"Rest is a real option, not a failure state."</p>
+  </div>
+</section>
+
+<!-- Story -->
+<section class="story">
+  <h2>Why I built this.</h2>
+  <p>I have ADHD. And the thing that destroys my days most is waiting mode — that frozen state where I can't start anything because something is coming up later.</p>
+  <p>I could have 6 free hours before a meeting, but my brain treats them as unusable. I'd sit there, scrolling, watching the clock, feeling guilty for wasting time I couldn't make myself use.</p>
+  <p>Every productivity app I tried made it worse. More notifications. More streaks. More ways to feel like I wasn't doing enough.</p>
+  <p>So I built Albor. An app that shows me my actual free time, suggests gentle things if I want them, and genuinely lets me rest without making me feel bad about it.</p>
+  <p>I'm not a coder. I'm from Mexico. I used AI tools to help me build what I couldn't build alone. It took months. But it's here now, and it's free, because the people who need it most shouldn't have to pay to feel okay about their time.</p>
+  <p class="signature">— Ricardo</p>
+</section>
+
+<!-- Footer CTA -->
+<section class="footer-cta">
+  <h2>Your time belongs to you.</h2>
+  <p>See it clearly. Use it gently. Or don't. Both are okay.</p>
+  <a href="https://apps.apple.com/app/albor/id6770060563" class="cta-button">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    Download Free on iOS
+  </a>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="social-links">
+    <a href="#">TikTok</a>
+    <a href="#">Instagram</a>
+    <a href="https://ricardomisais-commits.github.io/albor/albor-privacy-policy.html">Privacy Policy</a>
+  </div>
+  <p class="copyright">&copy; 2026 Albor. Made in Mexico with ADHD.</p>
+</footer>
+
+</body>
+</html>
